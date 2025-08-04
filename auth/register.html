@@ -1,366 +1,525 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register - Zippy Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'dark-bg': '#121212',
-                        'dark-card': '#1e1e1e',
-                        'accent': '#00d4ff',
-                        'accent-hover': '#00b8e6'
-                    },
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'dark-bg': '#121212',
+              'dark-card': '#1e1e1e',
+              accent: '#00d4ff',
+              'accent-hover': '#00b8e6',
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            },
+          },
+        },
+      };
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body class="bg-dark-bg text-white font-poppins min-h-screen flex items-center justify-center p-4">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-dark-bg text-white font-poppins min-h-screen flex items-center justify-center p-4"
+  >
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%), radial-gradient(circle at 80% 20%, #00d4ff 0%, transparent 50%);"></div>
+      <div
+        class="absolute inset-0"
+        style="
+          background-image: radial-gradient(
+              circle at 20% 80%,
+              #00d4ff 0%,
+              transparent 50%
+            ),
+            radial-gradient(circle at 80% 20%, #00d4ff 0%, transparent 50%);
+        "
+      ></div>
     </div>
 
     <!-- Register Container -->
     <div class="relative z-10 w-full max-w-md">
-        <!-- Logo Section -->
-        <div class="text-center mb-8">
-            <!-- <div class="inline-block p-4 bg-dark-card rounded-2xl shadow-2xl border border-gray-800 mb-4">
+      <!-- Logo Section -->
+      <div class="text-center mb-8">
+        <!-- <div class="inline-block p-4 bg-dark-card rounded-2xl shadow-2xl border border-gray-800 mb-4">
                 <div class="w-16 h-16 bg-gradient-to-br from-accent to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                     <i class="fas fa-bolt text-2xl text-white"></i>
                 </div>
             </div> -->
-            <h1 class="text-3xl font-bold text-accent mb-2">Zippy Store</h1>
-            <p class="text-gray-400">Join our digital community</p>
+        <h1 class="text-3xl font-bold text-accent mb-2">Zippy Store</h1>
+        <p class="text-gray-400">Join our digital community</p>
+      </div>
+
+      <!-- Register Card -->
+      <div
+        class="bg-dark-card rounded-2xl shadow-2xl border border-gray-800 p-8 backdrop-blur-sm"
+      >
+        <div class="text-center mb-8">
+          <h2 class="text-2xl font-bold mb-2">Create Account</h2>
+          <p class="text-gray-400">Fill in your details to get started</p>
         </div>
 
-        <!-- Register Card -->
-        <div class="bg-dark-card rounded-2xl shadow-2xl border border-gray-800 p-8 backdrop-blur-sm">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold mb-2">Create Account</h2>
-                <p class="text-gray-400">Fill in your details to get started</p>
+        <!-- Register Form -->
+        <form id="registerForm" class="space-y-6" method="POST">
+          <!-- Username Field -->
+          <div class="space-y-2">
+            <label
+              for="username"
+              class="block text-sm font-medium text-gray-300"
+            >
+              Username
+            </label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="fas fa-user text-gray-400"></i>
+              </div>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
+                placeholder="Choose a unique username"
+                required
+              />
             </div>
+          </div>
 
-            <!-- Register Form -->
-            <form id="registerForm" class="space-y-6" method="POST">
-                <!-- Username Field -->
-                <div class="space-y-2">
-                    <label for="username" class="block text-sm font-medium text-gray-300">
-                        Username
-                    </label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-user text-gray-400"></i>
-                        </div>
-                        <input 
-                            type="text" 
-                            id="username" 
-                            name="username"
-                            class="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
-                            placeholder="Choose a unique username"
-                            required
-                        >
-                    </div>
-                </div>
+          <!-- Email Field -->
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-300">
+              Email
+            </label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="fas fa-envelope text-gray-400"></i>
+              </div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+          </div>
 
-                <!-- Email Field -->
-                <div class="space-y-2">
-                    <label for="email" class="block text-sm font-medium text-gray-300">
-                        Email
-                    </label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-envelope text-gray-400"></i>
-                        </div>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email"
-                            class="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
-                            placeholder="Enter your email address"
-                            required
-                        >
-                    </div>
-                </div>
+          <!-- Password Field -->
+          <div class="space-y-2">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-300"
+            >
+              Password
+            </label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <i class="fas fa-lock text-gray-400"></i>
+              </div>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="w-full pl-12 pr-12 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
+                placeholder="Create a strong password"
+                required
+              />
+              <button
+                type="button"
+                id="togglePassword"
+                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-accent transition-colors"
+              >
+                <i class="fas fa-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+            <!-- Password Strength Indicator -->
+            <div class="mt-2">
+              <div class="flex space-x-1">
+                <div
+                  id="strength1"
+                  class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"
+                ></div>
+                <div
+                  id="strength2"
+                  class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"
+                ></div>
+                <div
+                  id="strength3"
+                  class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"
+                ></div>
+                <div
+                  id="strength4"
+                  class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"
+                ></div>
+              </div>
+              <p id="strengthText" class="text-xs text-gray-500 mt-1">
+                Password strength
+              </p>
+            </div>
+          </div>
 
-                <!-- Password Field -->
-                <div class="space-y-2">
-                    <label for="password" class="block text-sm font-medium text-gray-300">
-                        Password
-                    </label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i class="fas fa-lock text-gray-400"></i>
-                        </div>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password"
-                            class="w-full pl-12 pr-12 py-4 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300"
-                            placeholder="Create a strong password"
-                            required
-                        >
-                        <button 
-                            type="button" 
-                            id="togglePassword"
-                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-accent transition-colors"
-                        >
-                            <i class="fas fa-eye" id="eyeIcon"></i>
-                        </button>
-                    </div>
-                    <!-- Password Strength Indicator -->
-                    <div class="mt-2">
-                        <div class="flex space-x-1">
-                            <div id="strength1" class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"></div>
-                            <div id="strength2" class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"></div>
-                            <div id="strength3" class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"></div>
-                            <div id="strength4" class="h-1 w-1/4 bg-gray-700 rounded-full transition-colors"></div>
-                        </div>
-                        <p id="strengthText" class="text-xs text-gray-500 mt-1">Password strength</p>
-                    </div>
-                </div>
-
-                <!-- Terms & Conditions Checkbox -->
-                <div class="space-y-4">
-                    <label class="flex items-start space-x-3 cursor-pointer">
-                        <input 
-                            type="checkbox" 
-                            id="terms" 
-                            name="terms"
-                            class="w-5 h-5 mt-0.5 text-accent bg-gray-800 border-gray-600 rounded focus:ring-accent focus:ring-2 transition-colors"
-                            required
-                        >
-                        <span class="text-sm text-gray-300 leading-relaxed">
-                            Saya memahami dan menyetujui 
-                            <a href="#" class="text-accent hover:text-accent-hover underline transition-colors">
-                                syarat & ketentuan
-                            </a>
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Register Button -->
-                <button 
-                    type="submit" 
-                    id="registerBtn"
-                    class="w-full bg-accent hover:bg-accent-hover text-dark-bg font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark-card disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled
+          <!-- Terms & Conditions Checkbox -->
+          <div class="space-y-4">
+            <label class="flex items-start space-x-3 cursor-pointer">
+              <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                class="w-5 h-5 mt-0.5 text-accent bg-gray-800 border-gray-600 rounded focus:ring-accent focus:ring-2 transition-colors"
+                required
+              />
+              <span class="text-sm text-gray-300 leading-relaxed">
+                Saya memahami dan menyetujui
+                <a
+                  href="#"
+                  class="text-accent hover:text-accent-hover underline transition-colors"
                 >
-                    <span id="registerText">Create Account</span>
-                    <i id="registerIcon" class="fas fa-user-plus ml-2"></i>
-                </button>
+                  syarat & ketentuan
+                </a>
+              </span>
+            </label>
+          </div>
 
-            </form>
+          <!-- Register Button -->
+          <button
+            type="submit"
+            id="registerBtn"
+            class="w-full bg-accent hover:bg-accent-hover text-dark-bg font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark-card disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            <span id="registerText">Create Account</span>
+            <i id="registerIcon" class="fas fa-user-plus ml-2"></i>
+          </button>
+        </form>
 
-            <!-- Sign In Link -->
-            <div class="text-center mt-8 pt-6 border-t border-gray-700">
-                <p class="text-gray-400">
-                    Already have an account? 
-                    <a href="login.html" class="text-accent hover:text-accent-hover font-medium transition-colors">
-                        Sign in here
-                    </a>
-                </p>
-            </div>
+        <!-- Sign In Link -->
+        <div class="text-center mt-8 pt-6 border-t border-gray-700">
+          <p class="text-gray-400">
+            Already have an account?
+            <a
+              href="login.html"
+              class="text-accent hover:text-accent-hover font-medium transition-colors"
+            >
+              Sign in here
+            </a>
+          </p>
         </div>
+      </div>
 
-        <!-- Footer -->
-        <div class="text-center mt-8 text-gray-500 text-sm">
-            <p>&copy; 2024 Zippy Store. All rights reserved.</p>
-        </div>
+      <!-- Footer -->
+      <div class="text-center mt-8 text-gray-500 text-sm">
+        <p>&copy; 2024 Zippy Store. All rights reserved.</p>
+      </div>
     </div>
 
+    <!-- Notification -->
+    <div
+      id="notification"
+      class="fixed top-6 right-6 px-6 py-4 rounded-lg shadow-lg z-50 hidden text-sm font-medium transition-all duration-300"
+    ></div>
+
     <script>
-        // Password toggle functionality
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
-        const eyeIcon = document.getElementById('eyeIcon');
+      // Password toggle functionality
+      const togglePassword = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
 
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            
-            // Toggle eye icon
-            if (type === 'password') {
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            } else {
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            }
+      togglePassword.addEventListener('click', function () {
+        const type =
+          passwordInput.getAttribute('type') === 'password'
+            ? 'text'
+            : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Toggle eye icon
+        if (type === 'password') {
+          eyeIcon.classList.remove('fa-eye-slash');
+          eyeIcon.classList.add('fa-eye');
+        } else {
+          eyeIcon.classList.remove('fa-eye');
+          eyeIcon.classList.add('fa-eye-slash');
+        }
+      });
+
+      // Password strength checker
+      const strengthBars = [
+        document.getElementById('strength1'),
+        document.getElementById('strength2'),
+        document.getElementById('strength3'),
+        document.getElementById('strength4'),
+      ];
+      const strengthText = document.getElementById('strengthText');
+
+      passwordInput.addEventListener('input', function () {
+        const password = this.value;
+        let strength = 0;
+
+        // Check password criteria
+        if (password.length >= 8) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) strength++;
+
+        // Update strength bars
+        strengthBars.forEach((bar, index) => {
+          bar.classList.remove(
+            'bg-red-500',
+            'bg-yellow-500',
+            'bg-green-500',
+            'bg-accent'
+          );
+          if (index < strength) {
+            if (strength <= 1) bar.classList.add('bg-red-500');
+            else if (strength <= 2) bar.classList.add('bg-yellow-500');
+            else if (strength <= 3) bar.classList.add('bg-green-500');
+            else bar.classList.add('bg-accent');
+          } else {
+            bar.classList.add('bg-gray-700');
+          }
         });
 
-        // Password strength checker
-        const strengthBars = [
-            document.getElementById('strength1'),
-            document.getElementById('strength2'),
-            document.getElementById('strength3'),
-            document.getElementById('strength4')
-        ];
-        const strengthText = document.getElementById('strengthText');
+        // Update strength text
+        const strengthTexts = ['Weak', 'Fair', 'Good', 'Strong'];
+        if (password.length === 0) {
+          strengthText.textContent = 'Password strength';
+          strengthText.className = 'text-xs text-gray-500 mt-1';
+        } else {
+          strengthText.textContent = strengthTexts[strength - 1] || 'Weak';
+          if (strength <= 1)
+            strengthText.className = 'text-xs text-red-400 mt-1';
+          else if (strength <= 2)
+            strengthText.className = 'text-xs text-yellow-400 mt-1';
+          else if (strength <= 3)
+            strengthText.className = 'text-xs text-green-400 mt-1';
+          else strengthText.className = 'text-xs text-accent mt-1';
+        }
+      });
 
-        passwordInput.addEventListener('input', function() {
-            const password = this.value;
-            let strength = 0;
-            
-            // Check password criteria
-            if (password.length >= 8) strength++;
-            if (/[a-z]/.test(password)) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) strength++;
-            
-            // Update strength bars
-            strengthBars.forEach((bar, index) => {
-                bar.classList.remove('bg-red-500', 'bg-yellow-500', 'bg-green-500', 'bg-accent');
-                if (index < strength) {
-                    if (strength <= 1) bar.classList.add('bg-red-500');
-                    else if (strength <= 2) bar.classList.add('bg-yellow-500');
-                    else if (strength <= 3) bar.classList.add('bg-green-500');
-                    else bar.classList.add('bg-accent');
-                } else {
-                    bar.classList.add('bg-gray-700');
-                }
-            });
-            
-            // Update strength text
-            const strengthTexts = ['Weak', 'Fair', 'Good', 'Strong'];
-            if (password.length === 0) {
-                strengthText.textContent = 'Password strength';
-                strengthText.className = 'text-xs text-gray-500 mt-1';
+      // Terms checkbox validation
+      const termsCheckbox = document.getElementById('terms');
+      const registerBtn = document.getElementById('registerBtn');
+      const usernameInput = document.getElementById('username');
+      const emailInput = document.getElementById('email');
+
+      function validateForm() {
+        const isValid =
+          termsCheckbox.checked &&
+          usernameInput.value.trim() !== '' &&
+          emailInput.value.trim() !== '' &&
+          passwordInput.value.trim() !== '';
+
+        registerBtn.disabled = !isValid;
+      }
+
+      [termsCheckbox, usernameInput, emailInput, passwordInput].forEach(
+        (input) => {
+          input.addEventListener('change', validateForm);
+          input.addEventListener('input', validateForm);
+        }
+      );
+
+      // Form submission with loading state
+      const registerForm = document.getElementById('registerForm');
+      const registerText = document.getElementById('registerText');
+      const registerIcon = document.getElementById('registerIcon');
+
+      registerForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Show loading state
+        registerBtn.disabled = true;
+        registerBtn.classList.add('opacity-75');
+        registerText.textContent = 'Creating Account...';
+        registerIcon.classList.remove('fa-user-plus');
+        registerIcon.classList.add('fa-spinner', 'fa-spin');
+
+        const formData = new FormData(registerForm);
+        formData.append('action', 'register');
+
+        fetch(
+          'https://script.google.com/macros/s/AKfycbyPRLdh7aHHEeq3r6mj81atPipou9fmkA5GACmtyBlFgr_Vi1U1PuYYTC-jcBf_l0RU5Q/exec',
+          {
+            method: 'POST',
+            body: formData,
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            registerBtn.disabled = false;
+            registerBtn.classList.remove('opacity-75');
+            registerText.textContent = 'Create Account';
+            registerIcon.classList.remove('fa-spinner', 'fa-spin');
+            registerIcon.classList.add('fa-user-plus');
+
+            if (data.status === 'success') {
+              showNotification(data.message, 'success');
+
+              registerForm.reset();
+
             } else {
-                strengthText.textContent = strengthTexts[strength - 1] || 'Weak';
-                if (strength <= 1) strengthText.className = 'text-xs text-red-400 mt-1';
-                else if (strength <= 2) strengthText.className = 'text-xs text-yellow-400 mt-1';
-                else if (strength <= 3) strengthText.className = 'text-xs text-green-400 mt-1';
-                else strengthText.className = 'text-xs text-accent mt-1';
+              showNotification(data.message || 'Registrasi gagal.', 'error');
             }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            showNotification('Terjadi kesalahan saat registrasi.');
+            registerBtn.disabled = false;
+            registerBtn.classList.remove('opacity-75');
+            registerText.textContent = 'Create Account';
+            registerIcon.classList.remove('fa-spinner', 'fa-spin');
+            registerIcon.classList.add('fa-user-plus');
+          });
+      });
+
+      // Input field focus effects
+      const inputs = document.querySelectorAll(
+        'input[type="text"], input[type="email"], input[type="password"]'
+      );
+      inputs.forEach((input) => {
+        input.addEventListener('focus', function () {
+          this.parentElement.classList.add('ring-2', 'ring-accent');
         });
 
-        // Terms checkbox validation
-        const termsCheckbox = document.getElementById('terms');
-        const registerBtn = document.getElementById('registerBtn');
-        const usernameInput = document.getElementById('username');
-        const emailInput = document.getElementById('email');
+        input.addEventListener('blur', function () {
+          this.parentElement.classList.remove('ring-2', 'ring-accent');
+        });
+      });
 
-        function validateForm() {
-            const isValid = termsCheckbox.checked && 
-                           usernameInput.value.trim() !== '' && 
-                           emailInput.value.trim() !== '' && 
-                           passwordInput.value.trim() !== '';
-            
-            registerBtn.disabled = !isValid;
+      // Add ripple effect to register button
+      registerBtn.addEventListener('click', function (e) {
+        if (!this.disabled) {
+          const ripple = document.createElement('div');
+          ripple.classList.add(
+            'absolute',
+            'bg-white',
+            'rounded-full',
+            'opacity-30',
+            'animate-ping'
+          );
+          ripple.style.width = '20px';
+          ripple.style.height = '20px';
+          ripple.style.left = e.offsetX - 10 + 'px';
+          ripple.style.top = e.offsetY - 10 + 'px';
+
+          this.style.position = 'relative';
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        }
+      });
+
+      // Username availability check simulation
+      let usernameTimeout;
+      usernameInput.addEventListener('input', function () {
+        clearTimeout(usernameTimeout);
+        const username = this.value.trim();
+
+        if (username.length >= 3) {
+          usernameTimeout = setTimeout(() => {
+            // Simulate username check
+            const isAvailable = Math.random() > 0.3; // 70% chance available
+            const parent = this.parentElement;
+
+            // Remove existing indicators
+            const existingIndicator = parent.querySelector(
+              '.username-indicator'
+            );
+            if (existingIndicator) existingIndicator.remove();
+
+            // Add availability indicator
+            const indicator = document.createElement('div');
+            indicator.className =
+              'username-indicator absolute inset-y-0 right-0 pr-4 flex items-center';
+            indicator.innerHTML = isAvailable
+              ? '<i class="fas fa-check text-green-400"></i>'
+              : '<i class="fas fa-times text-red-400"></i>';
+
+            parent.appendChild(indicator);
+          }, 1000);
+        }
+      });
+    </script>
+    <script>
+      function showNotification(message, type = 'success') {
+        const notif = document.getElementById('notification');
+        notif.textContent = message;
+
+        // Style by type
+        notif.className =
+          'fixed top-6 right-6 px-6 py-4 rounded-lg shadow-lg z-50 text-sm font-medium transition-all duration-300';
+
+        if (type === 'success') {
+          notif.classList.add('bg-green-500', 'text-white');
+        } else {
+          notif.classList.add('bg-red-500', 'text-white');
         }
 
-        [termsCheckbox, usernameInput, emailInput, passwordInput].forEach(input => {
-            input.addEventListener('change', validateForm);
-            input.addEventListener('input', validateForm);
-        });
+        notif.classList.remove('hidden');
+        notif.classList.add('opacity-100');
 
-        // Form submission with loading state
-        const registerForm = document.getElementById('registerForm');
-        const registerText = document.getElementById('registerText');
-        const registerIcon = document.getElementById('registerIcon');
-
-        registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            registerBtn.disabled = true;
-            registerBtn.classList.add('opacity-75');
-            registerText.textContent = 'Creating Account...';
-            registerIcon.classList.remove('fa-user-plus');
-            registerIcon.classList.add('fa-spinner', 'fa-spin');
-            
-            // Simulate registration process
-            setTimeout(() => {
-                // Reset button state
-                registerBtn.disabled = false;
-                registerBtn.classList.remove('opacity-75');
-                registerText.textContent = 'Create Account';
-                registerIcon.classList.remove('fa-spinner', 'fa-spin');
-                registerIcon.classList.add('fa-user-plus');
-                
-                // Show success message (in real app, redirect to verification page)
-                alert('Account created successfully! (This is a demo)');
-            }, 2500);
-        });
-
-        // Input field focus effects
-        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('ring-2', 'ring-accent');
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.classList.remove('ring-2', 'ring-accent');
-            });
-        });
-
-        // Social register button effects
-        const socialBtns = document.querySelectorAll('button[type="button"]');
-        socialBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const platform = this.textContent.trim();
-                alert(`${platform} registration clicked! (This is a demo)`);
-            });
-        });
-
-        // Add ripple effect to register button
-        registerBtn.addEventListener('click', function(e) {
-            if (!this.disabled) {
-                const ripple = document.createElement('div');
-                ripple.classList.add('absolute', 'bg-white', 'rounded-full', 'opacity-30', 'animate-ping');
-                ripple.style.width = '20px';
-                ripple.style.height = '20px';
-                ripple.style.left = e.offsetX - 10 + 'px';
-                ripple.style.top = e.offsetY - 10 + 'px';
-                
-                this.style.position = 'relative';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            }
-        });
-
-        // Username availability check simulation
-        let usernameTimeout;
-        usernameInput.addEventListener('input', function() {
-            clearTimeout(usernameTimeout);
-            const username = this.value.trim();
-            
-            if (username.length >= 3) {
-                usernameTimeout = setTimeout(() => {
-                    // Simulate username check
-                    const isAvailable = Math.random() > 0.3; // 70% chance available
-                    const parent = this.parentElement;
-                    
-                    // Remove existing indicators
-                    const existingIndicator = parent.querySelector('.username-indicator');
-                    if (existingIndicator) existingIndicator.remove();
-                    
-                    // Add availability indicator
-                    const indicator = document.createElement('div');
-                    indicator.className = 'username-indicator absolute inset-y-0 right-0 pr-4 flex items-center';
-                    indicator.innerHTML = isAvailable 
-                        ? '<i class="fas fa-check text-green-400"></i>'
-                        : '<i class="fas fa-times text-red-400"></i>';
-                    
-                    parent.appendChild(indicator);
-                }, 1000);
-            }
-        });
+        // Hide after 3.5 seconds
+        setTimeout(() => {
+          notif.classList.add('opacity-0');
+          setTimeout(() => {
+            notif.classList.add('hidden');
+          }, 300);
+        }, 3500);
+      }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9687894321aece39',t:'MTc1NDA3NDM4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement('script');
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9687894321aece39',t:'MTc1NDA3NDM4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName('head')[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement('iframe');
+          a.height = 1;
+          a.width = 1;
+          a.style.position = 'absolute';
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = 'none';
+          a.style.visibility = 'hidden';
+          document.body.appendChild(a);
+          if ('loading' !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener('DOMContentLoaded', c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              'loading' !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
 </html>
