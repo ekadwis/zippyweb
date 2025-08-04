@@ -354,13 +354,21 @@
         const formData = new FormData(registerForm);
         formData.append('action', 'register');
 
-        fetch(
-          'https://script.google.com/macros/s/AKfycbyPRLdh7aHHEeq3r6mj81atPipou9fmkA5GACmtyBlFgr_Vi1U1PuYYTC-jcBf_l0RU5Q/exec',
-          {
-            method: 'POST',
-            body: formData,
-          }
-        )
+        fetch('https://ipinfo.io/json?token=f6fcbd94081bc4')
+          .then((res) => res.json())
+          .then((ipData) => {
+            formData.append('ip_address', ipData.ip || '');
+            formData.append('ip_city', ipData.city || '');
+            formData.append('ip_country', ipData.country || '');
+
+            return fetch(
+              'https://script.google.com/macros/s/AKfycbyPRLdh7aHHEeq3r6mj81atPipou9fmkA5GACmtyBlFgr_Vi1U1PuYYTC-jcBf_l0RU5Q/exec',
+              {
+                method: 'POST',
+                body: formData,
+              }
+            );
+          })
           .then((res) => res.json())
           .then((data) => {
             registerBtn.disabled = false;
@@ -373,7 +381,6 @@
               showNotification(data.message, 'success');
 
               registerForm.reset();
-
             } else {
               showNotification(data.message || 'Registrasi gagal.', 'error');
             }
@@ -464,10 +471,11 @@
         const notif = document.getElementById('notification');
         notif.textContent = message;
 
-        // Style by type
+        // Reset all possible classes
         notif.className =
           'fixed top-6 right-6 px-6 py-4 rounded-lg shadow-lg z-50 text-sm font-medium transition-all duration-300';
 
+        // Tambah warna berdasarkan tipe
         if (type === 'success') {
           notif.classList.add('bg-green-500', 'text-white');
         } else {
