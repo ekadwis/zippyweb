@@ -1,0 +1,550 @@
+<script>
+  const userId = localStorage.getItem('user_id');
+const userEmail = localStorage.getItem('user_email');
+  if (!userId) {
+    window.location.href = '../../auth/login.html';
+  }
+</script>
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pemesanan Layanan Social Media</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="YOUR_CLIENT_KEY_HERE"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        min-height: 100vh;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #1e1e1e;
+        color: #00d4ff;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+      }
+
+      .back-btn:hover {
+        background: #00d4ff;
+        color: #121212;
+        transform: translateY(-2px);
+      }
+
+      .main-section {
+        background: #1e1e1e;
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid #333;
+      }
+
+      .page-title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #00d4ff;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #ffffff;
+      }
+
+      .form-input,
+      .form-select {
+        width: 100%;
+        padding: 12px 16px;
+        background: #121212;
+        border: 2px solid #333;
+        border-radius: 8px;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus,
+      .form-select:focus {
+        outline: none;
+        border-color: #00d4ff;
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+      }
+
+      .product-card {
+        background: #121212;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #333;
+        margin: 20px 0;
+      }
+
+      .product-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid #333;
+      }
+
+      .info-label {
+        font-weight: 500;
+        color: #00d4ff;
+      }
+
+      .info-value {
+        color: #ffffff;
+      }
+
+      .notes {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #333;
+      }
+
+      .notes h4 {
+        color: #00d4ff;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .notes ul {
+        list-style: none;
+        font-size: 12px;
+        color: #cccccc;
+      }
+
+      .notes li {
+        margin-bottom: 5px;
+        padding-left: 15px;
+        position: relative;
+      }
+
+      .notes li:before {
+        content: '•';
+        color: #00d4ff;
+        position: absolute;
+        left: 0;
+      }
+
+      .total-display {
+        background: #121212;
+        padding: 15px;
+        border-radius: 8px;
+        border: 2px solid #00d4ff;
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .total-label {
+        font-size: 14px;
+        color: #cccccc;
+        margin-bottom: 5px;
+      }
+
+      .total-amount {
+        font-size: 24px;
+        font-weight: 600;
+        color: #00d4ff;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: #00d4ff;
+        color: #121212;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background: #00b8e6;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+      }
+
+      .sidebar {
+        background: #1e1e1e;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #333;
+        height: fit-content;
+        position: sticky;
+        top: 20px;
+      }
+
+      .sidebar-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #00d4ff;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .terms-list {
+        list-style: none;
+        font-size: 13px;
+        color: #cccccc;
+      }
+
+      .terms-list li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.5;
+      }
+
+      .terms-list li:before {
+        content: '✓';
+        color: #00d4ff;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          padding: 15px;
+        }
+
+        .main-section,
+        .sidebar {
+          padding: 20px;
+        }
+
+        .page-title {
+          font-size: 24px;
+        }
+
+        .product-info {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Main Section - Form Pemesanan -->
+      <div class="main-section">
+        <a href="../index.html" class="back-btn"> ← Kembali </a>
+
+        <h1 class="page-title">Pemesanan Layanan Social Media</h1>
+
+        <form id="orderForm">
+          <div class="form-group">
+            <label class="form-label">Pilih Layanan</label>
+            <select class="form-select" id="serviceType" required>
+              <option value="">-- Pilih Layanan --</option>
+            </select>
+          </div>
+
+          <div class="product-card">
+            <div class="product-info">
+              <div class="info-item">
+                <span class="info-label">Target:</span>
+                <span class="info-value">Link Profil</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Refill:</span>
+                <span class="info-value">21 Hari</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Quality:</span>
+                <span class="info-value">High Quality Indonesia</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Estimasi:</span>
+                <span class="info-value">1-7 Hari Kerja</span>
+              </div>
+            </div>
+
+            <div class="notes">
+              <h4>Catatan:</h4>
+              <ul>
+                <li>Saat layanan sibuk, kecepatan bisa lebih lama.</li>
+                <li>
+                  Jangan melakukan pemesanan kedua pada link yang sama sebelum
+                  pesanan Anda selesai di sistem.
+                </li>
+                <li>
+                  Jika ada masalah dengan layanan, silakan hubungi nomor yang
+                  tertera di Contact.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Jumlah (Minimum: 100)</label>
+            <input
+              type="number"
+              class="form-input"
+              id="quantity"
+              min="100"
+              placeholder="Masukkan jumlah"
+              required
+            />
+          </div>
+
+          <input type="hidden" id="price" value="1000" />
+
+          <div class="form-group">
+            <label class="form-label">Target Link</label>
+            <input
+              type="url"
+              class="form-input"
+              id="targetLink"
+              placeholder="https://instagram.com/username"
+              required
+            />
+          </div>
+
+          <div class="total-display">
+            <div class="total-label">Total Harga</div>
+            <div class="total-amount" id="totalPrice">Rp 0</div>
+          </div>
+
+          <button type="submit" class="submit-btn">Buat Pesanan</button>
+        </form>
+      </div>
+
+      <!-- Sidebar - Terms & Conditions -->
+      <div class="sidebar">
+        <h2 class="sidebar-title">Terms & Condition Social Media Needs</h2>
+        <ul class="terms-list">
+          <li>
+            Pastikan akun tidak di private/diubah nama selama proses berlangsung
+          </li>
+          <li>
+            Proses masuk orderan 1-7 hari kerja setelah orderan berhasil di
+            submit
+          </li>
+          <li>
+            Untuk yang bergaransi memiliki durasi 21 hari sejak orderan diproses
+          </li>
+          <li>
+            Paket bundling lebih murah, untuk harga bisa ditanyakan langsung ke
+            admin
+          </li>
+          <li>Refill berlaku jika drop di atas 40% dari orderan</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      const quantityInput = document.getElementById('quantity');
+      const priceInput = document.getElementById('price');
+      const totalPriceDisplay = document.getElementById('totalPrice');
+      const orderForm = document.getElementById('orderForm');
+
+      // Function to format currency
+      function formatCurrency(amount) {
+        return new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          minimumFractionDigits: 0,
+        }).format(amount);
+      }
+
+      // Function to calculate total price
+      function calculateTotal() {
+        const quantity = parseInt(quantityInput.value) || 0;
+        const basePrice = parseInt(priceInput.value) || 0;
+
+        let adjustedPrice = basePrice;
+
+        // Adjust price berdasarkan quantity
+        if (quantity < 201) {
+          adjustedPrice = basePrice * 2; // 2x lipat
+        } else if (quantity <= 600) {
+          adjustedPrice = basePrice * 1.6; // +60%
+        } else if (quantity <= 999) {
+          adjustedPrice = basePrice * 1.3; // +30%
+        } else if (quantity >= 5000) {
+          adjustedPrice = basePrice * 0.85;
+        } // di atas 1000 pakai harga normal (basePrice)
+
+        const total = Math.round(quantity * adjustedPrice);
+        totalPriceDisplay.textContent = formatCurrency(total);
+      }
+      // Event listener for quantity input
+      quantityInput.addEventListener('input', calculateTotal);
+
+      // Form submission handler
+      orderForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const serviceType = document.getElementById('serviceType').value;
+        const quantity = quantityInput.value;
+        const targetLink = document.getElementById('targetLink').value;
+        const total =
+          parseInt(quantityInput.value) * parseInt(priceInput.value);
+
+        if (!serviceType || !quantity || !targetLink) {
+          alert('Mohon lengkapi semua field yang diperlukan!');
+          return;
+        }
+
+        if (parseInt(quantity) < 100) {
+          alert('Jumlah minimum adalah 100!');
+          return;
+        }
+
+        // Simulate order creation
+        alert(
+          `Pesanan berhasil dibuat!\n\nLayanan: ${serviceType}\nJumlah: ${quantity}\nTarget: ${targetLink}\nTotal: ${formatCurrency(
+            total
+          )}\n\nTerima kasih atas pesanan Anda!`
+        );
+
+        // Reset form
+        orderForm.reset();
+        totalPriceDisplay.textContent = 'Rp 0';
+      });
+
+      // Initialize total calculation
+      calculateTotal();
+    </script>
+
+    <script>
+      const serviceSelect = document.getElementById('serviceType');
+
+      let servicesData = [];
+      let isNavigatingAway = false;
+
+      window.addEventListener('beforeunload', function () {
+        isNavigatingAway = true;
+      });
+
+      // Fetch data dari backend Apps Script
+      fetch(
+        'https://script.google.com/macros/s/AKfycbyPRLdh7aHHEeq3r6mj81atPipou9fmkA5GACmtyBlFgr_Vi1U1PuYYTC-jcBf_l0RU5Q/exec?action=get-sosneeds'
+      )
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.status === 'success') {
+            servicesData = response.result;
+
+            // Populate dropdown dengan data produk
+            servicesData.forEach((item) => {
+              const option = document.createElement('option');
+              option.value = item.id_services;
+              option.textContent = item.produk;
+              serviceSelect.appendChild(option);
+            });
+          } else {
+            alert('Gagal memuat data layanan.');
+          }
+        })
+        .catch((err) => {
+          if (!isNavigatingAway) {
+            console.error('Fetch error:', err);
+            alert('Gagal mengambil data dari server.');
+          }
+        });
+
+      // Saat user memilih layanan
+      serviceSelect.addEventListener('change', function () {
+        const selectedId = this.value;
+        const selectedService = servicesData.find(
+          (service) => service.id_services === selectedId
+        );
+
+        if (selectedService) {
+          priceInput.value = selectedService.harga_satuan;
+          calculateTotal(); // Hitung ulang total harga
+        } else {
+          priceInput.value = 0;
+          totalPriceDisplay.textContent = 'Rp 0';
+        }
+      });
+    </script>
+
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement('script');
+            d.innerHTML =
+              "window.__CF$cv$params={r:'96acb95c93dbdd77',t:'MTc1NDQ2NDMyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName('head')[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement('iframe');
+          a.height = 1;
+          a.width = 1;
+          a.style.position = 'absolute';
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = 'none';
+          a.style.visibility = 'hidden';
+          document.body.appendChild(a);
+          if ('loading' !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener('DOMContentLoaded', c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              'loading' !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
